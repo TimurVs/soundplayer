@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="sounds">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let sound"> {{sound.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let sound"> {{sound.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="fileName">
+    <th mat-header-cell *matHeaderCellDef> File Name </th>
+    <td mat-cell *matCellDef="let sound"> {{sound.fileName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let sound">
+      <ng-template [ngIf]='selectedSound !== sound.fileName' [ngIfElse]='player'>
+        <button mat-icon-button (click)="selectSound(sound.fileName)"><mat-icon>play_arrow</mat-icon></button>
+      </ng-template>
+      <ng-template #player>
+        <audio [src]="'assets/sounds/' + selectedSound" controls controlsList="nodownload" ></audio>
+      </ng-template>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['id', 'name', 'fileName', 'actions']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['id', 'name', 'fileName', 'actions'];"></tr>
+</table>
