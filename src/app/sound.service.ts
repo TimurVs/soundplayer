@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,10 @@ export class SoundService {
     { id: 3, name: 'Sound 3', fileName: 'sound3.mp3' }
   ];
 
-  private selectedSoundSubject: BehaviorSubject<any | null> = new BehaviorSubject<any | null>(null);
-  public selectedSound$: Observable<any | null> = this.selectedSoundSubject.asObservable();
+  // private selectedSoundSubject: BehaviorSubject<any | null> = new BehaviorSubject<any | null>(null);
+  // public selectedSound$: Observable<any | null> = this.selectedSoundSubject.asObservable();
 
-  constructor() { }
+  // constructor() { }
 
   getSounds(): Observable<any[]> {
     return new Observable((observer) => {
@@ -23,7 +23,7 @@ export class SoundService {
     });
   }
 
-  setSelectedSound(sound: any): void {
-    this.selectedSoundSubject.next(sound);
-  }
+  // setSelectedSound(sound: any): void {
+  //   this.selectedSoundSubject.next(sound);
+  // }
 }
